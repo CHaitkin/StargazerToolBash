@@ -85,12 +85,12 @@ public class PlayerController : MonoBehaviour
         Vector2 moveDirection = moveAction.ReadValue<Vector2>();
         if(moveDirection.x > 0)
         {
-            mover.AccelerateInDirection(moveDirection);
+            mover.MoveInDirection(moveDirection);
             spriteRenderer.flipX = false;
         }
         if(moveDirection.x < 0)
         {
-            mover.AccelerateInDirection(moveDirection);
+            mover.MoveInDirection(moveDirection);
             spriteRenderer.flipX = true;
         }
     }

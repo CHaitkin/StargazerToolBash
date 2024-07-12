@@ -17,18 +17,14 @@ public class Mover : MonoBehaviour
         myRigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    public void AccelerateInDirection( Vector2 direction )
+    public void MoveInDirection( Vector2 direction )
     {
         //Normalize just means... set between 0 and 1 so that it only represents direction
         direction = Vector3.Normalize(direction);
 
         //Make our velocity faster depending on acceleration and frame rate
-        Vector2 newVelocity = myRigidbody2D.velocity +
-            (direction * acceleration * Time.deltaTime);
+        myRigidbody2D.velocity = new Vector2(direction.x * maximumSpeed, myRigidbody2D.velocity.y);
 
         //Set maximum speed
-        newVelocity.x = Mathf.Clamp(newVelocity.x, -maximumSpeed, maximumSpeed);
-
-        myRigidbody2D.velocity = newVelocity;
     }
 }
