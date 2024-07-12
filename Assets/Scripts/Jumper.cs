@@ -23,7 +23,8 @@ public class Jumper : MonoBehaviour
     public void Jump()
     {
         //As long as we are on the ground
-        if (groundDetector == null || groundDetector.onGround == true)
+        //if (groundDetector == null || groundDetector.onGround == true)
+        if (groundDetector == null || groundDetector.IsGrounded())
         {
             //Jump!
             myRigidBody2D.velocity += new Vector2(0f, jumpForce);
