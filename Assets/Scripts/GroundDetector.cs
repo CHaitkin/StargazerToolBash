@@ -31,17 +31,12 @@ public class GroundDetector : MonoBehaviour
     }
     */
 
-    public float floatHeight;
-    public float liftForce;
-    public float damping;
-
-    Rigidbody2D thisRigidBody2D;
-    Collider2D thisCollider2D;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
 
     private void Start()
     {
-        thisRigidBody2D = GetComponent<Rigidbody2D>();
-        thisCollider2D = GetComponent<Collider2D>();
+
     }
 
     private void FixedUpdate()
@@ -50,19 +45,8 @@ public class GroundDetector : MonoBehaviour
 
     public bool IsGrounded()
     {
-        // Takes the calculated bottom of the identified collider and offsets the detection to prevent colliding with the source object
-        Vector2 detectorStart = new(thisCollider2D.bounds.center.x, thisCollider2D.bounds.min.y + -0.1f);
-        // Cast a ray straight down
-        // We're setting a limit of the bottom of the collider
-        RaycastHit2D detect = Physics2D.Raycast(detectorStart, Vector2.down, thisCollider2D.bounds.min.y);
-
-        // This is a bit 'hacky' but checks to ensure we're not colliding with our own rigidbody
-        // The bug that exists is if we land on 'enemy' we will be able to jump again (provided we don't die)
-        // This would work better with a GroundLayer defined
-        if (detect.collider != null && detect.collider.gameObject.name != thisRigidBody2D.gameObject.name)
-        {
-            return true;
-        }
-        return false;
+        // Creates 'invisible circle' at players feet
+        // When it collides with the ground layer, we are allowed to jump
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 }

@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 194555095}
   - component: {fileID: 194555097}
   - component: {fileID: 194555096}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 287855528}
   - component: {fileID: 287855530}
   - component: {fileID: 287855529}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -613,7 +613,7 @@ GameObject:
   - component: {fileID: 549457359}
   - component: {fileID: 549457361}
   - component: {fileID: 549457360}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,6 +1187,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4760368875787204966, guid: 08acfd9920e26b4439068fcb74f46749, type: 3}
   m_PrefabInstance: {fileID: 768553815}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1250447370 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5477609974635026433, guid: 9b4c20c9a6109f545940b4be21c7bf1e, type: 3}
+  m_PrefabInstance: {fileID: 6828292777423158972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1316301580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,7 +1303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1416059567}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bricks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,8 +1318,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416059566}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5521275, y: 1.4039344, z: -0.07696924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1325,7 +1330,7 @@ Transform:
   - {fileID: 2138358990}
   - {fileID: 1828274589}
   - {fileID: 194555095}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1655957219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1603838792
 GameObject:
@@ -1338,7 +1343,7 @@ GameObject:
   - component: {fileID: 1603838793}
   - component: {fileID: 1603838795}
   - component: {fileID: 1603838794}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1525,7 +1530,7 @@ GameObject:
   - component: {fileID: 1611719366}
   - component: {fileID: 1611719365}
   - component: {fileID: 1611719364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1637,11 +1642,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611719363}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.707523, y: -1.88, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.1553955, y: -0.47606564, z: -0.07696924}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1655957219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1655957218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655957219}
+  m_Layer: 6
+  m_Name: Environment
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1655957219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655957218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.5521275, y: -1.4039344, z: 0.07696924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1416059567}
+  - {fileID: 1965868619}
+  - {fileID: 1611719366}
+  - {fileID: 1942326459}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765714117
@@ -1788,7 +1828,7 @@ GameObject:
   - component: {fileID: 1828274589}
   - component: {fileID: 1828274591}
   - component: {fileID: 1828274590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1967,7 +2007,7 @@ GameObject:
   - component: {fileID: 1942326459}
   - component: {fileID: 1942326458}
   - component: {fileID: 1942326457}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2079,12 +2119,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942326456}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.477524, y: -1.88, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.925396, y: -0.47606564, z: -0.07696924}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1655957219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1965755145 stripped
 Transform:
@@ -2102,7 +2142,7 @@ GameObject:
   - component: {fileID: 1965868619}
   - component: {fileID: 1965868618}
   - component: {fileID: 1965868617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2214,12 +2254,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965868616}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.55, y: -1.88, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.9978725, y: -0.47606564, z: -0.07696924}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1655957219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035018886
 GameObject:
@@ -2232,7 +2272,7 @@ GameObject:
   - component: {fileID: 2035018887}
   - component: {fileID: 2035018889}
   - component: {fileID: 2035018888}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2419,7 +2459,7 @@ GameObject:
   - component: {fileID: 2138358990}
   - component: {fileID: 2138358992}
   - component: {fileID: 2138358991}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Brick (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2660,6 +2700,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7719166626028278016, guid: 9b4c20c9a6109f545940b4be21c7bf1e, type: 3}
+      propertyPath: groundCheck
+      value: 
+      objectReference: {fileID: 1250447370}
+    - target: {fileID: 7719166626028278016, guid: 9b4c20c9a6109f545940b4be21c7bf1e, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 7957854573223964733, guid: 9b4c20c9a6109f545940b4be21c7bf1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.08
@@ -2777,13 +2825,10 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1765714119}
   - {fileID: 6828292777423158972}
-  - {fileID: 1416059567}
-  - {fileID: 1965868619}
-  - {fileID: 1611719366}
-  - {fileID: 1942326459}
   - {fileID: 3982255965043774741}
   - {fileID: 1012533423}
   - {fileID: 9171460383878459113}
   - {fileID: 1316301584}
   - {fileID: 579223686}
   - {fileID: 1938981405}
+  - {fileID: 1655957219}
