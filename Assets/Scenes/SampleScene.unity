@@ -1203,6 +1203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpingEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8176505455374026378, guid: 49e8adf735726b746b5a7d4541d743a4, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1499,7 +1503,8 @@ GameObject:
   - component: {fileID: 1341406471}
   - component: {fileID: 1341406470}
   - component: {fileID: 1341406474}
-  m_Layer: 0
+  - component: {fileID: 1341406475}
+  m_Layer: 7
   m_Name: PatrolEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1660,6 +1665,24 @@ MonoBehaviour:
   leftPoint: {fileID: 611674027}
   rightPoint: {fileID: 1059858455}
   speed: 2
+  destinationPoint: {fileID: 0}
+--- !u!114 &1341406475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341406469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a862823df943e4d9d9b7cc8d20e334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 6116327373554346263, guid: fce47ba93b20d244caf71e1180a8b684, type: 3}
+  enemyObject: {fileID: 1341406469}
+  speed: 1
+  fireCooldown: 2
+  fireDelay: 0.05
 --- !u!1 &1416059566
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,6 +3052,10 @@ PrefabInstance:
     - target: {fileID: 3606778093593651103, guid: 4f70ff0bab26dda439dee111bf3ad93a, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606778093593651103, guid: 4f70ff0bab26dda439dee111bf3ad93a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
