@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6116327373554346263}
   - component: {fileID: 283015202631324148}
   - component: {fileID: -3160268137085990035}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8115533403058270387}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -161,4 +161,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b82bc13baad784cac8cd667a33afa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   projectileLifespan: 5
