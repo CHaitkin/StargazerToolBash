@@ -8,9 +8,9 @@ public class EnemyPatrol : MonoBehaviour
     public GameObject leftPoint;
     public GameObject rightPoint;
     public float speed;
+    public Transform destinationPoint;
 
     private Rigidbody2D enemyRigidbody;
-    private Transform destinationPoint;
 
     // Start is called before the first frame update
     void Start()
