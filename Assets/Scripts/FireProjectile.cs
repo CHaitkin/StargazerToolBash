@@ -42,7 +42,8 @@ public class FireProjectile : MonoBehaviour
         newProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
         if (direction.position.x > source.position.x)
         {
-            newProjectile.AddForce(force: speed * Time.deltaTime * newProjectile.transform.right);
+            //newProjectile.AddForce(force: speed * Time.deltaTime * newProjectile.transform.right);
+            newProjectile.velocity = direction.position * speed;
 
             Debug.Log("I am facing Right");
             //Debug.Log($"");
@@ -50,7 +51,8 @@ public class FireProjectile : MonoBehaviour
         else
         {
             Debug.Log("I am facing left");
-            newProjectile.AddForce(-newProjectile.transform.right * speed * Time.deltaTime);
+            //newProjectile.AddForce(-newProjectile.transform.right * speed * Time.deltaTime);
+            newProjectile.velocity = direction.position * speed;
         }
 
     }
