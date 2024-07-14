@@ -15,11 +15,13 @@ public class ProjectileDestructor : MonoBehaviour
     {
         thisProjectile = this.gameObject;
         Destroy(thisProjectile, projectileLifespan);
+
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log($"Collided with {collision.gameObject.name}");
         Destructible destructible = collision.gameObject.GetComponent<Destructible>();
 
         if (destructible != null)
