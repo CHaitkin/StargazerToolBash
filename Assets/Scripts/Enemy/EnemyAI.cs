@@ -8,9 +8,10 @@ public class EnemyAI : MonoBehaviour
 
     private PlayerController player;
     
-    bool isAttacking;
-    bool isPatrolling;
-    bool isFollowing;
+    bool isAttacking = false;
+    bool isPatrolling = true;
+    bool isFollowing = false;
+    [SerializeField] bool canFollow;
 
     private void Start()
     {
@@ -40,20 +41,38 @@ public class EnemyAI : MonoBehaviour
             distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
             Debug.Log("The Distance is: " + distanceFromPlayer);
         }
+        if(distanceFromPlayer > 2)
+        {
+            isPatrolling = true;
+            isAttacking = false;
+            isFollowing = false;
+        }
+        if(distanceFromPlayer < 2)
+        {
+            isPatrolling = false;
+            isFollowing = false;
+            isAttacking = true;
+        }
+        if(distanceFromPlayer < 2 && canFollow)
+        {
+            isPatrolling = false;
+            isFollowing = true;
+            isAttacking = false;
+        }
     }
 
     void Patrol()
     {
-
+        Debug.Log("Patrolling");
     }
 
     void Follow()
     {
-
+        Debug.Log("Following " + player.transform.name);
     }
 
     void Attack()
     {
-
+        Debug.Log("Attacking " + player.transform.name);
     }
 }
