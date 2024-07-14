@@ -28,12 +28,12 @@ public class EnemyPatrol : MonoBehaviour
         if (destinationPoint == rightPoint.transform)
         {
             // Moves enemy to the right
-            enemyRigidbody.velocity = new Vector2(speed, 0);
+            enemyRigidbody.velocity = new Vector2(speed * Time.timeScale, 0);
         }
         else
         {
             // Moves enemy to the left
-            enemyRigidbody.velocity = new Vector2(-speed, 0);
+            enemyRigidbody.velocity = new Vector2(-speed * Time.timeScale, 0);
         }
 
         // Check if we have reached our right point
