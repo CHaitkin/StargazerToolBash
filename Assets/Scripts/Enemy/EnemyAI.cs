@@ -41,16 +41,14 @@ public class EnemyAI : MonoBehaviour
             distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
             Debug.Log("The Distance is: " + distanceFromPlayer);
         }
-        if(distanceFromPlayer > 2)
+        if(distanceFromPlayer > 2 && !isFollowing)
         {
             isPatrolling = true;
             isAttacking = false;
-            isFollowing = false;
         }
-        if(distanceFromPlayer < 2)
+        if(distanceFromPlayer < 2 && !canFollow &&!isFollowing)
         {
             isPatrolling = false;
-            isFollowing = false;
             isAttacking = true;
         }
         if(distanceFromPlayer < 2 && canFollow)
@@ -69,10 +67,19 @@ public class EnemyAI : MonoBehaviour
     void Follow()
     {
         Debug.Log("Following " + player.transform.name);
+
     }
 
     void Attack()
     {
         Debug.Log("Attacking " + player.transform.name);
+    }
+
+    IEnumerator FollowTime()
+    {
+        yield return new WaitForSeconds(5f);
+        isFollowing = false;
+        canFollow = false;
+        isPatrolling = true;
     }
 }
