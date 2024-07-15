@@ -58,8 +58,9 @@ public class PlatformBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"I hit something in CollisionEnter {collision.gameObject.name} at {collision.gameObject.transform.position}");
-        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile")
+        //Debug.Log($"I hit something in CollisionEnter {collision.gameObject.name} at {collision.gameObject.transform.position}");
+        //if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile" && collision.gameObject.tag != "EnemyType1")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "EnemyType1")
         {
             //Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");
             //Debug.Log("It's not a player!");
@@ -69,8 +70,9 @@ public class PlatformBehavior : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log($"I hit something in CollisionStay {collision.gameObject.name}");
-        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile")
+        //Debug.Log($"I hit something in CollisionStay {collision.gameObject.name}");
+        //if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile" && collision.gameObject.tag != "EnemyType1")
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "EnemyType1")
         {
             //Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");
             //Debug.Log("It's not a player!");
