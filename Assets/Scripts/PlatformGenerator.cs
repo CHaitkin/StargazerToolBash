@@ -7,69 +7,28 @@ using Random = UnityEngine.Random;
 
 public class PlatformGenerator : MonoBehaviour
 {
-    [Tooltip("When a platform should spawn, a random prefab from this list is chosen.")]
     public GameObject[] platformPrefabs;
 
-    [Tooltip("The distance between platforms at Y = 0. This is the easiest difficuly.")]
-    public PlatformSpawnParameters startSpawnParameters;
-    [Tooltip("The distance between platforms at the end-level height. This is the highest difficulty.")]
-    public PlatformSpawnParameters endSpawnParameters;
+    public float endLevelHeight = 10;
+    public float startLevelHeight = 0;
 
-    public float startGameHeight;
-    public float endGameHeight;
+    public float leftLimit = -5f;
+    public float rightLimit = 0f;
 
-    public float spawnZoneWidth = 7;
-    public float nextSpawnDistance = 10;
+    public float spawnDelay = 5f;
 
-    [Tooltip("The max number of platforms to spawn per frame.")]
-    public int maxPlatforms = 20;
 
-    //public float platformDelay = .5f;
-
-    private float previousSpawnHeight;
-
-    private new Camera camera;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        previousSpawnHeight = startGameHeight;
-        NextPlatformSpawn(true);
-        camera = Camera.main;
-
+        InvokeRepeating("NextPlatformSpawn", 0, spawnDelay);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //maxPlatforms = 20;
-        while (camera.transform.position.y > previousSpawnHeight - nextSpawnDistance)
-        {
-            if (maxPlatforms > 0 )
-            {
-                NextPlatformSpawn(false);
-                maxPlatforms--;
-            }
-            else
-            {
-                break;
-            }
-        }
-        previousSpawnHeight = startGameHeight;
-    }
-
-    private void NextPlatformSpawn(bool isFirstPlatform)
+    private void NextPlatformSpawn()
     {
 
         GameObject randomPrefab = platformPrefabs[Random.Range(0, platformPrefabs.Length)];
-        Vector3 randomPosition = GetNextPlatformPosition();
 
-        if (isFirstPlatform)
-        {
-            randomPosition.y = startGameHeight;
-        }
-
-        previousSpawnHeight = randomPosition.y;
+        Vector3 randomPosition = new Vector3(Random.Range(leftLimit, rightLimit), startLevelHeight, 0);
 
         GameObject thisPrefab = Instantiate(randomPrefab, randomPosition, randomPrefab.transform.rotation);
         thisPrefab.AddComponent<PlatformBehavior>();
@@ -78,34 +37,7 @@ public class PlatformGenerator : MonoBehaviour
         thisPrefab.GetComponent<Rigidbody2D>().gravityScale = 0f;
         thisPrefab.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         thisPrefab.GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
-        
-    }
 
-    private Vector3 GetNextPlatformPosition()
-    {
-        float difficultyPercent = (previousSpawnHeight - startGameHeight) / endGameHeight;
-        float minDistanceToNextPlatform = Mathf.Lerp(
-            startSpawnParameters.minDistanceToNextPlatform,
-            endSpawnParameters.maxDistanceToNextPlatform,
-            difficultyPercent);
-        float maxDistanceToNextPlatform = Mathf.Lerp(
-            startSpawnParameters.maxDistanceToNextPlatform,
-            endSpawnParameters.maxDistanceToNextPlatform,
-            difficultyPercent);
-
-        float distanceToNextPlatform = Random.Range(minDistanceToNextPlatform, maxDistanceToNextPlatform);
-        float xPos = Random.Range(0, spawnZoneWidth) - spawnZoneWidth / 2;
-        float yPos = previousSpawnHeight + distanceToNextPlatform;
-
-        return new Vector3(xPos, yPos, 0);
-    }
-
-    [Serializable]
-    public class PlatformSpawnParameters
-    {
-        [Tooltip("The lowest possible randomized distance from one platform to the next.")]
-        public float minDistanceToNextPlatform = 1;
-        [Tooltip("The highest possible randomized distance from one platform to the next.")]
-        public float maxDistanceToNextPlatform = 3;
+        Debug.Log($"I generated {randomPrefab.name} at {randomPosition}");
     }
 }

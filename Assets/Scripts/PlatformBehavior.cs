@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlatformBehavior : MonoBehaviour
 {
-    public float platformLife = 30;
+    //public float platformLife = 30;
     //public float speed = 2;
     GameObject thisPlatform;
     Rigidbody2D thisRigidbody;
     PlatformGenerator platformGenerator;
 
-    float platformLifeLeft;
+    //float platformLifeLeft;
     public Vector2 velocity;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class PlatformBehavior : MonoBehaviour
         //thisRigidbody.velocity = Vector3.up;
         //thisRigidbody.velocity *= speed;
 
-        platformLifeLeft = platformLife;
+        //platformLifeLeft = platformLife;
 
         //Destroy(thisPlatform, platformLife);
     }
@@ -35,23 +35,30 @@ public class PlatformBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         platformLifeLeft -= Time.deltaTime;
 
         if (platformLifeLeft <= 0)
         {
             Die();
         }
-
+        */
     }
 
     private void FixedUpdate()
     {
         thisRigidbody.MovePosition(thisRigidbody.position + velocity * Time.fixedDeltaTime);
+
+        // Check if this platform has reached the max height for the level
+        if( thisRigidbody.position.y >= platformGenerator.endLevelHeight )
+        {
+            Die();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log($"I hit something in CollisionEnter {collision.gameObject.name}");
+        Debug.Log($"I hit something in CollisionEnter {collision.gameObject.name} at {collision.gameObject.transform.position}");
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile")
         {
             //Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");
@@ -74,7 +81,7 @@ public class PlatformBehavior : MonoBehaviour
     private void Die()
     {
             Destroy(thisPlatform);
-            platformGenerator.maxPlatforms++;
+            //platformGenerator.currentPlatforms++;
 
     }
 }
