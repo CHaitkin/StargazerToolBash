@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
         {
             Patrol();
         }
-        if(isFollowing)
+        if(isFollowing && canFollow)
         {
             Follow();
         }
@@ -41,17 +41,17 @@ public class EnemyAI : MonoBehaviour
             distanceFromPlayer = Vector2.Distance(player.transform.position, transform.position);
             Debug.Log("The Distance is: " + distanceFromPlayer);
         }
-        if(distanceFromPlayer > 2 && !isFollowing)
+        if(distanceFromPlayer > 10 && !isFollowing)
         {
             isPatrolling = true;
             isAttacking = false;
         }
-        if(distanceFromPlayer < 2 && !canFollow &&!isFollowing)
+        if(distanceFromPlayer < 10 && !canFollow &&!isFollowing)
         {
             isPatrolling = false;
             isAttacking = true;
         }
-        if(distanceFromPlayer < 2 && canFollow)
+        if(distanceFromPlayer < 10 && canFollow)
         {
             isPatrolling = false;
             isFollowing = true;
@@ -66,8 +66,13 @@ public class EnemyAI : MonoBehaviour
 
     void Follow()
     {
-        Debug.Log("Following " + player.transform.name);
-
+        if(player != null)
+        {
+            Vector2 enemyPos = transform.position;
+            transform.position = Vector2.MoveTowards(enemyPos, player.transform.position, 2f * Time.deltaTime);
+            Debug.Log("Following " + player.transform.name);
+            StartCoroutine(FollowTime());
+        }
     }
 
     void Attack()
@@ -80,6 +85,8 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(5f);
         isFollowing = false;
         canFollow = false;
+        yield return new WaitForSeconds(0.1f);
+        canFollow = true;
         isPatrolling = true;
     }
 }
