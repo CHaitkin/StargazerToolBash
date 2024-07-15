@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlatformBehavior : MonoBehaviour
 {
-    public float platformLife = 10;
+    public float platformLife = 30;
     //public float speed = 2;
     GameObject thisPlatform;
     Rigidbody2D thisRigidbody;
@@ -51,6 +51,18 @@ public class PlatformBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log($"I hit something in CollisionEnter {collision.gameObject.name}");
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile")
+        {
+            //Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");
+            //Debug.Log("It's not a player!");
+            Die();
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log($"I hit something in CollisionStay {collision.gameObject.name}");
         if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile")
         {
             //Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");

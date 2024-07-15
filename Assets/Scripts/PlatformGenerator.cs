@@ -24,7 +24,7 @@ public class PlatformGenerator : MonoBehaviour
     [Tooltip("The max number of platforms to spawn per frame.")]
     public int maxPlatforms = 20;
 
-    public float platformDelay = .5f;
+    //public float platformDelay = .5f;
 
     private float previousSpawnHeight;
 
@@ -77,6 +77,7 @@ public class PlatformGenerator : MonoBehaviour
         thisPrefab.GetComponent<Rigidbody2D>().isKinematic = true;
         thisPrefab.GetComponent<Rigidbody2D>().gravityScale = 0f;
         thisPrefab.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        thisPrefab.GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
         
     }
 
