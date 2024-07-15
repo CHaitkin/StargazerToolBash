@@ -39,17 +39,20 @@ public class PlatformGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        maxPlatforms = 20;
+        //maxPlatforms = 20;
         while (camera.transform.position.y > previousSpawnHeight - nextSpawnDistance)
         {
-            NextPlatformSpawn(false);
-
-            maxPlatforms--;
-            if (maxPlatforms <= 0)
+            if (maxPlatforms > 0 )
+            {
+                NextPlatformSpawn(false);
+                maxPlatforms--;
+            }
+            else
             {
                 break;
             }
         }
+        previousSpawnHeight = startGameHeight;
     }
 
     private void NextPlatformSpawn(bool isFirstPlatform)
@@ -67,6 +70,7 @@ public class PlatformGenerator : MonoBehaviour
         GameObject thisPrefab = Instantiate(randomPrefab, randomPosition, randomPrefab.transform.rotation);
         thisPrefab.AddComponent<PlatformBehavior>();
         thisPrefab.AddComponent<Rigidbody2D>();
+        thisPrefab.GetComponent<Rigidbody2D>().isKinematic = true;
         thisPrefab.GetComponent<Rigidbody2D>().gravityScale = 0f;
         thisPrefab.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         

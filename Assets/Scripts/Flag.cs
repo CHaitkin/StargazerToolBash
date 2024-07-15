@@ -9,6 +9,9 @@ public class Flag : MonoBehaviour
     //Very simple script just listens to see if something touches it and shows a screen
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if ( collision.gameObject.name == "Player")
+        {
+            
         // Here's a slightly more complicated DOTween effect! Visit the Coin script for a more basic example.
         DOTween.Sequence() // This creates a sequence, which is a collection of tweens that can be played sequentially
             .SetLink(gameObject)
@@ -23,5 +26,6 @@ public class Flag : MonoBehaviour
                 1f) // Duration in seconds
                 .SetEase(Ease.Linear)) // I thought this effect might be better with linear time interpolation
             .AppendCallback(() => winScreen?.SetActive(true)); // You could also use the onComplete property instead of AppendCallback
+        }
     }
 }
