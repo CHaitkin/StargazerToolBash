@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +24,8 @@ public class PlatformGenerator : MonoBehaviour
     [Tooltip("The max number of platforms to spawn per frame.")]
     public int maxPlatforms = 20;
 
+    public float platformDelay = .5f;
+
     private float previousSpawnHeight;
 
     private new Camera camera;
@@ -37,7 +40,7 @@ public class PlatformGenerator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //maxPlatforms = 20;
         while (camera.transform.position.y > previousSpawnHeight - nextSpawnDistance)
@@ -57,6 +60,7 @@ public class PlatformGenerator : MonoBehaviour
 
     private void NextPlatformSpawn(bool isFirstPlatform)
     {
+
         GameObject randomPrefab = platformPrefabs[Random.Range(0, platformPrefabs.Length)];
         Vector3 randomPosition = GetNextPlatformPosition();
 
