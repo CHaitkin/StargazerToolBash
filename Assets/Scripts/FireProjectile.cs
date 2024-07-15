@@ -45,12 +45,12 @@ public class FireProjectile : MonoBehaviour
         {
             // Fire horizontal right
             newHorizonalProjectile.velocity = new Vector2(-direction.position.x, 0);
-            newHorizonalProjectile.velocity *= speed * Time.timeScale;
+            newHorizonalProjectile.velocity *= speed;
             //newHorizonalProjectile.AddForce(direction.right * speed);
             yield return new WaitForSeconds(fireDelay);
             // Fire diagonally up
             newDiagonalProjectile.velocity = new Vector2(-direction.position.x, direction.position.y);
-            newDiagonalProjectile.velocity *= speed * Time.timeScale;
+            newDiagonalProjectile.velocity *= speed;
 
 
         }
@@ -58,11 +58,11 @@ public class FireProjectile : MonoBehaviour
         {
             // Fire horizonal left
             newHorizonalProjectile.velocity = new Vector2(direction.position.x, 0);
-            newHorizonalProjectile.velocity *= speed * Time.timeScale;
+            newHorizonalProjectile.velocity *= speed;
             yield return new WaitForSeconds(fireDelay);
             // Fire diagonally up
             newDiagonalProjectile.velocity = new Vector2(direction.position.x, direction.position.y);
-            newDiagonalProjectile.velocity *= speed * Time.timeScale;
+            newDiagonalProjectile.velocity *= speed;
         }
     }
 
