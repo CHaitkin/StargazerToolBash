@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Projectile
+  - EnemyType2
+  - EnemyType2Right
+  - EnemyType2Left
+  - EnemyType1
   layers:
   - Default
   - TransparentFX
