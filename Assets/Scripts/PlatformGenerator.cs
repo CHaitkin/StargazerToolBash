@@ -37,7 +37,7 @@ public class PlatformGenerator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //maxPlatforms = 20;
         while (camera.transform.position.y > previousSpawnHeight - nextSpawnDistance)

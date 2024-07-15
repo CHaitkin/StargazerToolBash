@@ -6,22 +6,26 @@ using UnityEngine;
 public class PlatformBehavior : MonoBehaviour
 {
     public float platformLife = 10;
-    public float speed = 2;
+    //public float speed = 2;
     GameObject thisPlatform;
     Rigidbody2D thisRigidbody;
     PlatformGenerator platformGenerator;
 
     float platformLifeLeft;
+    public Vector2 velocity;
+
     // Start is called before the first frame update
     void Start()
     {
         thisPlatform = this.gameObject;
         thisRigidbody = GetComponent<Rigidbody2D>();
         platformGenerator = GameObject.FindObjectOfType<PlatformGenerator>();
+        velocity = new Vector2(0f, 1.1f);
+        //velocity = new Vector2(thisPlatform.transform.position.x, thisPlatform.transform.position.y + .1f); 
 
         //thisRigidbody.AddForce(Vector2.up, ForceMode2D.Impulse);
-        thisRigidbody.velocity = Vector3.up;
-        thisRigidbody.velocity *= speed;
+        //thisRigidbody.velocity = Vector3.up;
+        //thisRigidbody.velocity *= speed;
 
         platformLifeLeft = platformLife;
 
@@ -40,11 +44,16 @@ public class PlatformBehavior : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        thisRigidbody.MovePosition(thisRigidbody.position + velocity * Time.fixedDeltaTime);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.TryGetComponent<PlayerController>(out PlayerController playerController) && !collision.gameObject.TryGetComponent<ProjectileDestructor>(out ProjectileDestructor projectileDestructor))
+        if (collision.gameObject.tag != "Player" && collision.gameObject.tag != "Projectile")
         {
-            Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");
+            //Debug.Log($"{thisPlatform} hit {collision.gameObject.name}");
             //Debug.Log("It's not a player!");
             Die();
         }
