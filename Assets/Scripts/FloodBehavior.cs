@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FloodBehavior : MonoBehaviour
@@ -24,7 +25,8 @@ public class FloodBehavior : MonoBehaviour
     void IncreaseFlood()
     {
         floodScale += floodRate;
-        floodTransform.localScale = new Vector2(40, floodScale);
+        //floodTransform.localScale = new Vector2(40, floodScale);
+        floodTransform.Translate(Vector2.up * floodTime * Time.deltaTime);
 
         if (floodScale >= 170)
         {
@@ -34,11 +36,13 @@ public class FloodBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Debug.Log($"Triggered by {collision.name}");
         if (collision.CompareTag("Player"))
         {
             Destructible destructible = collision.gameObject.GetComponent<Destructible>();
 
             destructible.TakeDamage(damage);
+            floodTime = 0;
         }
     }
 }
