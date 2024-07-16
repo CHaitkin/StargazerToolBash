@@ -1117,7 +1117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  speed: 2
+  speed: 1.5
   fireDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1501825535505264108
 MonoBehaviour:
