@@ -88,30 +88,33 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Vector2 moveDirection = moveAction.ReadValue<Vector2>();
-        if(moveDirection.x > 0)
+        if(GameManager.Instance.gameRunning)
         {
-            mover.MoveInDirection(moveDirection);
-            playerAnimations.StopMoveAnimation(false);
+            Vector2 moveDirection = moveAction.ReadValue<Vector2>();
+            if (moveDirection.x > 0)
+            {
+                mover.MoveInDirection(moveDirection);
+                playerAnimations.StopMoveAnimation(false);
+            }
+            if (moveDirection.x < 0)
+            {
+                mover.MoveInDirection(moveDirection);
+                playerAnimations.StopMoveAnimation(false);
+            }
+            if (moveDirection.x == 0)
+            {
+                playerAnimations.StopMoveAnimation(true);
+            }
+            if (moveDirection.x > 0 && !movingRight)
+            {
+                Flip();
+            }
+            else if (moveDirection.x < 0 && movingRight)
+            {
+                Flip();
+            }
+            playerAnimations.PlayJumpAnimation(groundDetector.IsGrounded());
         }
-        if(moveDirection.x < 0)
-        {
-            mover.MoveInDirection(moveDirection);
-            playerAnimations.StopMoveAnimation(false);
-        }
-        if(moveDirection.x == 0)
-        {
-            playerAnimations.StopMoveAnimation(true);
-        }
-        if(moveDirection.x > 0 && !movingRight)
-        {
-            Flip();
-        }
-        else if(moveDirection.x < 0 && movingRight)
-        {
-            Flip();
-        }
-        playerAnimations.PlayJumpAnimation(groundDetector.IsGrounded());
     }
 
     private void OnJump(InputAction.CallbackContext context)
