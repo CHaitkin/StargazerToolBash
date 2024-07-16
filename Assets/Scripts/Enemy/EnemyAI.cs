@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
         {
             currentEnemyState = enemyStates.Patrol;
             ReturnToPatrol();
-            Debug.Log("Patrolling");
+            //Debug.Log("Patrolling");
             return;
         }
         // Calculate the distance to the player
@@ -52,12 +52,12 @@ public class EnemyAI : MonoBehaviour
         {
             currentEnemyState = enemyStates.Following;
             FollowPlayer();
-            Debug.Log("Following");
+            //Debug.Log("Following");
             return;
         }
         
         currentEnemyState = enemyStates.Attacking;
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
 
 
     }
