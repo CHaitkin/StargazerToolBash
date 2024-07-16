@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6116327373554346263}
   - component: {fileID: 283015202631324148}
   - component: {fileID: -3160268137085990035}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EnemyProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -162,4 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
   projectileLifespan: 5
