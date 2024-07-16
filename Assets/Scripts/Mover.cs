@@ -6,7 +6,6 @@ using UnityEngine;
 public class Mover : MonoBehaviour
 {
     //Set some public variables so we can control our speed
-    public float acceleration = 10f;
     public float maximumSpeed = 15f;
 
     private Rigidbody2D myRigidbody2D;
@@ -20,7 +19,6 @@ public class Mover : MonoBehaviour
     public void MoveInDirection( Vector2 direction )
     {
         //Normalize just means... set between 0 and 1 so that it only represents direction
-        direction = Vector3.Normalize(direction);
 
         //Make our velocity faster depending on acceleration and frame rate
         myRigidbody2D.velocity = new Vector2(direction.x * maximumSpeed, myRigidbody2D.velocity.y);

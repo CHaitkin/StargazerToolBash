@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Projectile
+  - EnemyType2
+  - EnemyType2Right
+  - EnemyType2Left
+  - EnemyType1
   layers:
   - Default
   - TransparentFX
@@ -12,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Enemies
   - 
   - 
   - 

@@ -65,7 +65,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I'm not good enough
+  m_text: 'Here again...
+
+    the Mindfields.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 690bbe42893394764b58e4aaed87acd7, type: 2}
   m_sharedMaterial: {fileID: 9119396496807180619, guid: 690bbe42893394764b58e4aaed87acd7, type: 2}
