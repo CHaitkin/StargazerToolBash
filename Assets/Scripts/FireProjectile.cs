@@ -35,11 +35,11 @@ public class FireProjectile : MonoBehaviour
     {
         EnemyPatrol enemyPatrol = enemyObject.GetComponent<EnemyPatrol>();
 
-        Transform direction = enemyPatrol.destinationPoint;
+        Vector3 direction = enemyPatrol.fireDirection;
 
         Rigidbody2D newHorizonalProjectile;
         Rigidbody2D newDiagonalProjectile;
-        if (direction.position.x < source.position.x)
+        if (direction.x < source.position.x)
         {
             if (!enemyObject.CompareTag("EnemyType2Left"))
             {
@@ -49,11 +49,11 @@ public class FireProjectile : MonoBehaviour
                 // Fire horizontal left
                 if ( enemyObject.CompareTag("EnemyType1"))
                 {
-                    newHorizonalProjectile.velocity = new Vector2(direction.position.x, 0);
+                    newHorizonalProjectile.velocity = new Vector2(direction.x, 0);
                 }
                 else
                 {
-                    newHorizonalProjectile.velocity = new Vector2(-direction.position.x, 0);
+                    newHorizonalProjectile.velocity = new Vector2(-direction.x, 0);
                 }
                 newHorizonalProjectile.velocity *= speed;
                 if (!enemyObject.CompareTag("EnemyType1"))
@@ -61,7 +61,7 @@ public class FireProjectile : MonoBehaviour
                     yield return new WaitForSeconds(fireDelay);
                     newDiagonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
                     // Fire diagonally up
-                    newDiagonalProjectile.velocity = new Vector2(-direction.position.x, direction.position.y);
+                    newDiagonalProjectile.velocity = new Vector2(-direction.x, direction.y);
                     newDiagonalProjectile.velocity *= speed;
                 }
             }
@@ -76,11 +76,11 @@ public class FireProjectile : MonoBehaviour
                 if ( enemyObject.CompareTag("EnemyType2") || enemyObject.CompareTag("EnemyType1"))
                 //if (enemyObject.CompareTag("EnemyType2") )
                 {
-                    newHorizonalProjectile.velocity = new Vector2(direction.position.x, 0);
+                    newHorizonalProjectile.velocity = new Vector2(direction.x, 0);
                 }
                 else
                 {
-                    newHorizonalProjectile.velocity = new Vector2(-direction.position.x, 0);    
+                    newHorizonalProjectile.velocity = new Vector2(-direction.x, 0);    
                 }
                 newHorizonalProjectile.velocity *= speed;
                 if ( !enemyObject.CompareTag("EnemyType1"))
@@ -90,11 +90,11 @@ public class FireProjectile : MonoBehaviour
                     // Fire diagonally up
                     if (enemyObject.CompareTag("EnemyType2") || enemyObject.CompareTag("EnemyType1"))
                     {
-                        newDiagonalProjectile.velocity = new Vector2(direction.position.x, direction.position.y);
+                        newDiagonalProjectile.velocity = new Vector2(direction.x, direction.y);
                     }
                     else
                     {
-                        newDiagonalProjectile.velocity = new Vector2(-direction.position.x, direction.position.y);
+                        newDiagonalProjectile.velocity = new Vector2(-direction.x, direction.y);
                     }
                     newDiagonalProjectile.velocity *= speed;
                 }

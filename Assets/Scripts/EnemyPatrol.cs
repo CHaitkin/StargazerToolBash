@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,46 +6,49 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-    public GameObject leftPoint;
-    public GameObject rightPoint;
-    public float speed;
-    public Transform destinationPoint;
+    public Transform[] waypoints;
+    public float speed = 2f;
+    private int currentWaypointIndex = 0;
+    public Vector3 fireDirection;
+    private bool movingRight = false;
 
-    private Rigidbody2D enemyRigidbody;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        enemyRigidbody = GetComponent<Rigidbody2D>();
-        destinationPoint = rightPoint.transform;
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        // Sets the enemy direction it will move toward to the destinationPoint
-        Vector2 pointDirection = destinationPoint.position - transform.position;
+        Patrol();
+    }
 
-        if (destinationPoint == rightPoint.transform)
-        {
-            // Moves enemy to the right
-            enemyRigidbody.velocity = new Vector2(speed, 0);
-        }
-        else
-        {
-            // Moves enemy to the left
-            enemyRigidbody.velocity = new Vector2(-speed, 0);
-        }
+    void Patrol()
+    {
+        if (waypoints.Length == 0)
+            return;
 
-        // Check if we have reached our right point
-        if (Vector2.Distance(transform.position, destinationPoint.position) < 0.2f && destinationPoint == rightPoint.transform)
+        Transform targetWaypoint = waypoints[currentWaypointIndex];
+        Vector3 direction = (targetWaypoint.position - transform.position).normalized;
+        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
+
+        // Check if the enemy reached the waypoint
+        if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
-            // We have reached the right point so change destinationPoint to leftPoint
-            destinationPoint = leftPoint.transform;
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            direction = (waypoints[currentWaypointIndex].position - transform.position).normalized;
+            fireDirection = direction;
+            // Flip the enemy based on the direction
+            if (direction.x > 0 && !movingRight)
+            {
+                Flip();
+            }
+            else if (direction.x < 0 && movingRight)
+            {
+                Flip();
+            }
         }
-        if (Vector2.Distance(transform.position, destinationPoint.position) < 0.2f && destinationPoint == leftPoint.transform)
-        {
-            destinationPoint = rightPoint.transform;
-        }
+    }
+
+    void Flip()
+    {
+        movingRight = !movingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
