@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,9 +19,12 @@ public class PlayerController : MonoBehaviour
     private Jumper jumper;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
-    
+    private PlayerAnimations playerAnimations;
+    private GroundDetector groundDetector;
     private PlayerInput playerInput;
     private InputAction moveAction;
+    private bool movingRight = false;
+
 
 
     private void Awake()
@@ -47,8 +51,10 @@ public class PlayerController : MonoBehaviour
     {
         mover = GetComponent<Mover>();
         jumper = GetComponent<Jumper>();
+        groundDetector = GetComponent<GroundDetector>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        playerAnimations = GetComponent<PlayerAnimations>();
     }
 
     // Update is called once per frame, around 60 times a second
@@ -86,13 +92,26 @@ public class PlayerController : MonoBehaviour
         if(moveDirection.x > 0)
         {
             mover.MoveInDirection(moveDirection);
-            spriteRenderer.flipX = false;
+            playerAnimations.StopMoveAnimation(false);
         }
         if(moveDirection.x < 0)
         {
             mover.MoveInDirection(moveDirection);
-            spriteRenderer.flipX = true;
+            playerAnimations.StopMoveAnimation(false);
         }
+        if(moveDirection.x == 0)
+        {
+            playerAnimations.StopMoveAnimation(true);
+        }
+        if(moveDirection.x > 0 && !movingRight)
+        {
+            Flip();
+        }
+        else if(moveDirection.x < 0 && movingRight)
+        {
+            Flip();
+        }
+        playerAnimations.PlayJumpAnimation(groundDetector.IsGrounded());
     }
 
     private void OnJump(InputAction.CallbackContext context)
@@ -102,5 +121,12 @@ public class PlayerController : MonoBehaviour
         {
             audioSource.Play();
         }
+    }
+    void Flip()
+    {
+        movingRight = !movingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
