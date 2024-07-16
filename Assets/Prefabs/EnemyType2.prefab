@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 6116327373554346263, guid: fce47ba93b20d244caf71e1180a8b684, type: 3}
   enemyObject: {fileID: 3606778093593651103}
-  speed: 1
+  speed: 0.5
   fireCooldown: 5
   fireDelay: 0.05
 --- !u!1 &4320336941560286747

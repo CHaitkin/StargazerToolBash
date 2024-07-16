@@ -35,12 +35,14 @@ public class FireProjectile : MonoBehaviour
     {
         EnemyPatrol enemyPatrol = enemyObject.GetComponent<EnemyPatrol>();
 
+
         Vector3 horizontalDirection = new Vector3(1, 0, 0);
         Vector3 diagonalDirection = new Vector3(-0.5f, 0.5f, 0);
 
         Rigidbody2D newHorizonalProjectile;
         Rigidbody2D newDiagonalProjectile;
         if (horizontalDirection.x < source.position.x)
+
         {
             if (!enemyObject.CompareTag("EnemyType2Left"))
             {
@@ -55,6 +57,7 @@ public class FireProjectile : MonoBehaviour
                 else
                 {
                     newHorizonalProjectile.velocity = new Vector2(-horizontalDirection.x, 0);
+
                 }
                 newHorizonalProjectile.velocity *= speed;
                 if (!enemyObject.CompareTag("EnemyType1"))
@@ -63,6 +66,7 @@ public class FireProjectile : MonoBehaviour
                     newDiagonalProjectile = Instantiate(projectile, source.position + new Vector3(0, 1f, 0), source.rotation) as Rigidbody2D;
                     // Fire diagonally up
                     newDiagonalProjectile.velocity = diagonalDirection;
+
                     newDiagonalProjectile.velocity *= speed;
                 }
             }
@@ -82,6 +86,7 @@ public class FireProjectile : MonoBehaviour
                 else
                 {
                     newHorizonalProjectile.velocity = new Vector2(-horizontalDirection.x, 0);    
+
                 }
                 newHorizonalProjectile.velocity *= speed;
                 if ( !enemyObject.CompareTag("EnemyType1"))
@@ -96,6 +101,7 @@ public class FireProjectile : MonoBehaviour
                     else
                     {
                         newDiagonalProjectile.velocity = diagonalDirection;
+
                     }
                     newDiagonalProjectile.velocity *= speed;
                 }

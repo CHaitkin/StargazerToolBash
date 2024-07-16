@@ -24,6 +24,7 @@ public class EnemyPatrol : MonoBehaviour
 
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         fireDirection = (targetWaypoint.position - transform.position).normalized;
+
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, speed * Time.deltaTime);
 
         // Check if the enemy reached the waypoint
@@ -33,6 +34,7 @@ public class EnemyPatrol : MonoBehaviour
 
             fireDirection = (waypoints[currentWaypointIndex].position - transform.position);
             Vector3 direction = (waypoints[currentWaypointIndex].position - transform.position).normalized;
+
             // Flip the enemy based on the direction
             if (direction.x > 0 && !movingRight)
             {
