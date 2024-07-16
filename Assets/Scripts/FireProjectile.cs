@@ -39,31 +39,66 @@ public class FireProjectile : MonoBehaviour
 
         Rigidbody2D newHorizonalProjectile;
         Rigidbody2D newDiagonalProjectile;
-        newHorizonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
-        newDiagonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
-        if (direction.position.x > source.position.x)
+        if (direction.position.x < source.position.x)
         {
-            // Fire horizontal right
-            newHorizonalProjectile.velocity = new Vector2(-direction.position.x, 0);
-            newHorizonalProjectile.velocity *= speed;
-            //newHorizonalProjectile.AddForce(direction.right * speed);
-            yield return new WaitForSeconds(fireDelay);
-            // Fire diagonally up
-            newDiagonalProjectile.velocity = new Vector2(-direction.position.x, direction.position.y);
-            newDiagonalProjectile.velocity *= speed;
-
-
+            if (!enemyObject.CompareTag("EnemyType2Left"))
+            {
+                //Debug.Log($"{source.name} Fire Left");
+                newHorizonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
+              
+                // Fire horizontal left
+                if ( enemyObject.CompareTag("EnemyType1"))
+                {
+                    newHorizonalProjectile.velocity = new Vector2(direction.position.x, 0);
+                }
+                else
+                {
+                    newHorizonalProjectile.velocity = new Vector2(-direction.position.x, 0);
+                }
+                newHorizonalProjectile.velocity *= speed;
+                if (!enemyObject.CompareTag("EnemyType1"))
+                {
+                    yield return new WaitForSeconds(fireDelay);
+                    newDiagonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
+                    // Fire diagonally up
+                    newDiagonalProjectile.velocity = new Vector2(-direction.position.x, direction.position.y);
+                    newDiagonalProjectile.velocity *= speed;
+                }
+            }
         }
         else
         {
-            // Fire horizonal left
-            newHorizonalProjectile.velocity = new Vector2(direction.position.x, 0);
-            newHorizonalProjectile.velocity *= speed;
-            yield return new WaitForSeconds(fireDelay);
-            // Fire diagonally up
-            newDiagonalProjectile.velocity = new Vector2(direction.position.x, direction.position.y);
-            newDiagonalProjectile.velocity *= speed;
+            if (!enemyObject.CompareTag("EnemyType2Right"))
+            {
+                newHorizonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
+                //Debug.Log($"{source.name} Fire Right");
+                // Fire horizonal right
+                if ( enemyObject.CompareTag("EnemyType2") || enemyObject.CompareTag("EnemyType1"))
+                //if (enemyObject.CompareTag("EnemyType2") )
+                {
+                    newHorizonalProjectile.velocity = new Vector2(direction.position.x, 0);
+                }
+                else
+                {
+                    newHorizonalProjectile.velocity = new Vector2(-direction.position.x, 0);    
+                }
+                newHorizonalProjectile.velocity *= speed;
+                if ( !enemyObject.CompareTag("EnemyType1"))
+                {
+                    yield return new WaitForSeconds(fireDelay);
+                    newDiagonalProjectile = Instantiate(projectile, source.position, source.rotation) as Rigidbody2D;
+                    // Fire diagonally up
+                    if (enemyObject.CompareTag("EnemyType2") || enemyObject.CompareTag("EnemyType1"))
+                    {
+                        newDiagonalProjectile.velocity = new Vector2(direction.position.x, direction.position.y);
+                    }
+                    else
+                    {
+                        newDiagonalProjectile.velocity = new Vector2(-direction.position.x, direction.position.y);
+                    }
+                    newDiagonalProjectile.velocity *= speed;
+                }
+            }
         }
     }
-
 }

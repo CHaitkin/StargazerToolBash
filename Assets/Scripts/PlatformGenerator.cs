@@ -38,6 +38,6 @@ public class PlatformGenerator : MonoBehaviour
         thisPrefab.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         thisPrefab.GetComponent<Rigidbody2D>().useFullKinematicContacts = true;
 
-        Debug.Log($"I generated {randomPrefab.name} at {randomPosition}");
+        //Debug.Log($"I generated {randomPrefab.name} at {randomPosition}");
     }
 }
